@@ -9,6 +9,10 @@ var txtsize=16; // text size in pt
 var linsize=2; // line width in px
 var circler=20; // circle radius
 var linkwid=10; // link rect width in px
+var strngth=0.001; // dynamic simulation (force)
+var viscsty=1; // dynamic simulation (viscosity)
+var baldist=200; // balance distance
+var central=0.001; // central attraction to avoid moving away
 // function declaration
 function drawinit() {
  d3.select('body').append('div').attr('class','wrapper')

@@ -22,7 +22,7 @@ function lineshift(x1,y1,x2,y2,dx,dy,flip=false) { /** along (dx,dy)-direction, 
  var Dy=x2-x1;
  var dd=Math.sqrt(dx*dx+dy*dy),DD=Math.sqrt(Dx*Dx+Dy*Dy);
  var SinAng=(dx*Dx+dy*Dy)/dd/DD;
- if (SinAng<0.0001) { // too narrow
+ if (Math.abs(SinAng)<0.0001) { // too narrow
 console.log('too narrow: ');
   if (flip) {
    return [{'x':x1,'y':y1},{'x':x1+dx/5,'y':y1+dy/5},{'x':x1+dx/5+Dx/5,'y':y1+dy/5+Dy/5},{'x':x2,'y':y2}];
@@ -32,9 +32,9 @@ console.log('too narrow: ');
  } else {
 console.log('normal: ');
   if (flip) {
-   return [{'x':x1,'y':y1},{'x':x1+dx/5,'y':y1+dy/5},{'x':x2,'y':y2}];
+   return [{'x':x1,'y':y1},{'x':x1+dx/3,'y':y1+dy/3},{'x':x2,'y':y2}];
   } else {
-   return [{'x':x2,'y':y2},{'x':x1+dx/5,'y':y1+dy/5},{'x':x1,'y':y1}];
+   return [{'x':x2,'y':y2},{'x':x1+dx/3,'y':y1+dy/3},{'x':x1,'y':y1}];
   }
  }
 }
