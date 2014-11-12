@@ -18,9 +18,9 @@ function updateNodes() {
   var D_lft_rgt=Math.sqrt(dx_lft_rgt*dx_lft_rgt+dy_lft_rgt*dy_lft_rgt);
   var D_lft_rst=Math.sqrt(dx_lft_rst*dx_lft_rst+dy_lft_rst*dy_lft_rst);
   var D_rgt_rst=Math.sqrt(dx_rgt_rst*dx_rgt_rst+dy_rgt_rst*dy_rgt_rst);
-  var lft_VX=strngth*dx_lft_rgt*(D_lft_rgt-baldist)+strngth*dx_lft_rst*(D_lft_rst-baldist)+central*(wid/2-lftX),lft_VY=strngth*dy_lft_rgt*(D_lft_rgt-baldist)+strngth*dy_lft_rst*(D_lft_rst-baldist)+central*(hgh/2-lftY);
-  var rgt_VX=-strngth*dx_lft_rgt*(D_lft_rgt-baldist)+strngth*dx_rgt_rst*(D_rgt_rst-baldist)+central*(wid/2-rgtX),rgt_VY=-strngth*dy_lft_rgt*(D_lft_rgt-baldist)+strngth*dy_rgt_rst*(D_rgt_rst-baldist)+central*(hgh/2-rgtY);
-  var rst_VX=-strngth*dx_rgt_rst*(D_rgt_rst-baldist)-strngth*dx_lft_rst*(D_lft_rst-baldist)+central*(wid/2-rstX),rst_VY=-strngth*dy_rgt_rst*(D_rgt_rst-baldist)-strngth*dy_lft_rst*(D_lft_rst-baldist)+central*(hgh/2-rstY);
+  var lft_VX=strngth*dx_lft_rgt*(D_lft_rgt-baldist)+strngth*dx_lft_rst*(D_lft_rst-baldist),lft_VY=strngth*dy_lft_rgt*(D_lft_rgt-baldist)+strngth*dy_lft_rst*(D_lft_rst-baldist);
+  var rgt_VX=-strngth*dx_lft_rgt*(D_lft_rgt-baldist)+strngth*dx_rgt_rst*(D_rgt_rst-baldist),rgt_VY=-strngth*dy_lft_rgt*(D_lft_rgt-baldist)+strngth*dy_rgt_rst*(D_rgt_rst-baldist);
+  var rst_VX=-strngth*dx_rgt_rst*(D_rgt_rst-baldist)-strngth*dx_lft_rst*(D_lft_rst-baldist),rst_VY=-strngth*dy_rgt_rst*(D_rgt_rst-baldist)-strngth*dy_lft_rst*(D_lft_rst-baldist);
   lftX+=lft_VX/viscsty;lftY+=lft_VY/viscsty;
   rgtX+=rgt_VX/viscsty;rgtY+=rgt_VY/viscsty;
   rstX+=rst_VX/viscsty;rstY+=rst_VY/viscsty;
@@ -33,6 +33,14 @@ function updateNodes() {
   cst[lft].setAttribute('x',lftX);cst[lft].setAttribute('y',lftY+txtsize/2.5);
   cst[rgt].setAttribute('x',rgtX);cst[rgt].setAttribute('y',rgtY+txtsize/2.5);
   cst[rst].setAttribute('x',rstX);cst[rst].setAttribute('y',rstY+txtsize/2.5);
+ }
+ for (var node in nodes) {
+  var nodX=parseFloat(cs[node].getAttribute('cx')),nodY=parseFloat(cs[node].getAttribute('cy'));
+  var nod_VX=central*(wid/2-nodX),nod_VY=central*(hgh/2-nodY);
+  nodX+=nod_VX/viscsty;nodY+=nod_VY/viscsty;
+  cs[node].setAttribute('cx',nodX);cs[node].setAttribute('cy',nodY);
+  cse[node].setAttribute('cx',nodX);cse[node].setAttribute('cy',nodY);
+  cst[node].setAttribute('x',nodX);cst[node].setAttribute('y',nodY+txtsize/2.5);
  }
  // redraw the links
  clearpath();

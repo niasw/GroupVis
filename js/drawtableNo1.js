@@ -42,31 +42,33 @@ function drawtable(table) {
   var lft=nodes.indexOf(table[rlt].left);
   var rgt=nodes.indexOf(table[rlt].right);
   var rst=nodes.indexOf(table[rlt].result);
-  var linefun=d3.svg.line()
-             .x(function(d) {return d.x;}).y(function(d) {return d.y;})
-             .interpolate('linear'); // polygonal lines
-  var linefunc=d3.svg.line()
-             .x(function(d) {return d.x;}).y(function(d) {return d.y;})
-             .interpolate('basis'); // B-spline curve
-  if (lft!=rgt) { // left!=right (A)
-   var tmpsline=twolin(cs[lft].getAttribute('cx'),cs[lft].getAttribute('cy'),cs[rgt].getAttribute('cx'),cs[rgt].getAttribute('cy'),linkwid);
-   var tmpcurv1=lineshift((tmpsline[0].x+tmpsline[1].x)/2,(tmpsline[0].y+tmpsline[1].y)/2,cs[rst].getAttribute('cx'),cs[rst].getAttribute('cy'),tmpsline[1].x-tmpsline[0].x,tmpsline[1].y-tmpsline[0].y);
-   var tmpcurv2=lineshift((tmpsline[2].x+tmpsline[3].x)/2,(tmpsline[2].y+tmpsline[3].y)/2,cs[rst].getAttribute('cx'),cs[rst].getAttribute('cy'),tmpsline[2].x-tmpsline[3].x,tmpsline[2].y-tmpsline[3].y,true);
-   d3.select('svg').insert('path',':first-child').attr('class','sline').attr('d',linefunc(tmpcurv1)+'L'+linefunc(tmpcurv2).substr(1));
-   if (rgt>lft) {d3.select('svg').insert('path',':first-child').attr('class','sline').attr('d',linefun(tmpsline));} // no repeat
+  if (lft!=0&&rgt!=0&&rst!=0) { // remove 1
+   var linefun=d3.svg.line()
+              .x(function(d) {return d.x;}).y(function(d) {return d.y;})
+              .interpolate('linear'); // polygonal lines
+   var linefunc=d3.svg.line()
+              .x(function(d) {return d.x;}).y(function(d) {return d.y;})
+              .interpolate('basis'); // B-spline curve
+   if (lft!=rgt) { // left!=right (A)
+    var tmpsline=twolin(cs[lft].getAttribute('cx'),cs[lft].getAttribute('cy'),cs[rgt].getAttribute('cx'),cs[rgt].getAttribute('cy'),linkwid);
+    var tmpcurv1=lineshift((tmpsline[0].x+tmpsline[1].x)/2,(tmpsline[0].y+tmpsline[1].y)/2,cs[rst].getAttribute('cx'),cs[rst].getAttribute('cy'),tmpsline[1].x-tmpsline[0].x,tmpsline[1].y-tmpsline[0].y);
+    var tmpcurv2=lineshift((tmpsline[2].x+tmpsline[3].x)/2,(tmpsline[2].y+tmpsline[3].y)/2,cs[rst].getAttribute('cx'),cs[rst].getAttribute('cy'),tmpsline[2].x-tmpsline[3].x,tmpsline[2].y-tmpsline[3].y,true);
+    d3.select('svg').insert('path',':first-child').attr('class','sline').attr('d',linefunc(tmpcurv1)+'L'+linefunc(tmpcurv2).substr(1));
+    if (rgt>lft) {d3.select('svg').insert('path',':first-child').attr('class','sline').attr('d',linefun(tmpsline));} // no repeat
   } else { // left=right (use O to present self relation)
-   d3.select('svg')
-     .insert('circle',':first-child').attr('class','sline')
-     .attr('cx',cs[lft].getAttribute('cx')).attr('cy',cs[lft].getAttribute('cy')).attr('r',circler*1.3);
-   if (rst!=lft) { // left=right!=result (Ox1+A)
-    var tmpspath=outlin(cs[lft].getAttribute('cx'),cs[lft].getAttribute('cy'),cs[rst].getAttribute('cx'),cs[rst].getAttribute('cy'),linkwid);
-    d3.select('svg')
-      .insert('path',':first-child').attr('class','sline')
-      .attr('d',linefun(tmpspath));
-   } else { // left=right=result (Ox2)
     d3.select('svg')
       .insert('circle',':first-child').attr('class','sline')
-      .attr('cx',cs[lft].getAttribute('cx')).attr('cy',cs[lft].getAttribute('cy')).attr('r',circler*1.5);
+      .attr('cx',cs[lft].getAttribute('cx')).attr('cy',cs[lft].getAttribute('cy')).attr('r',circler*1.3);
+    if (rst!=lft) { // left=right!=result (Ox1+A)
+     var tmpspath=outlin(cs[lft].getAttribute('cx'),cs[lft].getAttribute('cy'),cs[rst].getAttribute('cx'),cs[rst].getAttribute('cy'),linkwid);
+     d3.select('svg')
+       .insert('path',':first-child').attr('class','sline')
+       .attr('d',linefun(tmpspath));
+    } else { // left=right=result (Ox2)
+     d3.select('svg')
+       .insert('circle',':first-child').attr('class','sline')
+       .attr('cx',cs[lft].getAttribute('cx')).attr('cy',cs[lft].getAttribute('cy')).attr('r',circler*1.5);
+    }
    }
   }
  }
