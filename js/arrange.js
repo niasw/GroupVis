@@ -44,7 +44,7 @@ function updateNodes() {
  }
  // redraw the links
  clearpath();
- drawtable(table); // FIXME: Oh! This complex step slowdown the animation!!!
+ drawgraph(table); // FIXME: Oh! This complex step slowdown the animation!!!
 }
 function clearpath() {
  var tmppath=d3.selectAll('.sline');

@@ -1,5 +1,5 @@
 body {
-    font-family: 仿宋, FangSong, Courier, monospace;
+    font-family: Courier, WenQuanYiHei, monospace;
     min-height: 740px;
 
     background: rgb(255, 255, 170);
@@ -61,6 +61,8 @@ svg.chart *.erase {
 }
 svg.chart text,
 svg.chart *.sline {
+ font-family: Helvetica, Arial, WenQuanYiHei, sans-serif;
+ font-size: 14pt;
  stroke-width: 1pt;
 }
 svg.chart path.sline {

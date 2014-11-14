@@ -13,20 +13,26 @@
  <script src="lib/d3.min.js"></script>
  <script src="js/const.js"></script><!--declare constants, init svg-->
  <script src="js/drawnodes.js"></script><!--draw nodes-->
- <script src="js/drawtable.js"></script><!--draw relations-->
- <!--json entrance-->
- <script>
-d3.json("example/data/demo.json", function(error,data) {
- if (error) {console.log(error);}
- nodes=data.nodes;
- table=data.table;
- // draw graph
- drawinit();
- drawnodes(nodes);
- drawtable(table);
-});
- </script>
+ <script src="js/drawgraph.js"></script><!--draw relations-->
+ <script src="js/main.js"></script><!--json entrance-->
  <script src="js/arrange.js"></script><!--controls-->
+ <script src="js/postinit.js"></script><!--json entrance-->
+ <script>refresh();</script><!--run entrance-->
+ <div class="wrapper"><form class="center" name="formgroup" style="width:700px;text-align:center;line-height:10pt;padding:0;">
+  <input type="radio" name="group" onclick="javascript:source='example/data/demo.json';refresh();" checked="checked"/>Relation 1
+  <input type="radio" name="group" onclick="javascript:source='example/data/demosame.json';refresh();"/>Relation 2
+  <input type="radio" name="group" onclick="javascript:source='example/data/D3group.json';refresh();"/>D3 Group
+  <input type="radio" name="group" onclick="javascript:source='example/data/C6group.json';refresh();"/>C6 Group
+ </form></div>
+ <div class="wrapper"><form class="center" name="formgraph" style="width:700px;text-align:center;line-height:10pt;padding:0;">
+  <input type="radio" name="graph" onclick="javascript:drawgraph=drawtable;refresh();" checked="checked"/>All Multi. Table
+  <input type="radio" name="graph" onclick="javascript:drawgraph=drawtable1ele;spele=nodes.indexOf(document.getElementById('spele').value);refresh();"/>1 Ele. Filter
+  <input type="radio" name="graph" onclick="javascript:drawgraph=drawmultiL;spele=nodes.indexOf(document.getElementById('spele').value);refresh();"/>L-Multi. Graph
+  <input type="radio" name="graph" onclick="javascript:drawgraph=drawmultiR;spele=nodes.indexOf(document.getElementById('spele').value);refresh();"/>R-Multi. Graph
+ </form></div>
+ <div class="wrapper"><form class="center" name="formspele" style="width:700px;text-align:center;line-height:10pt;padding:0;">
+  The Element = <input type="text" value="1" id="spele"/>
+  <input type="button" value="Refresh" onsubmit="javascript:spele=nodes.indexOf(document.getElementById('spele').value);console.log(spele);refresh();" onclick="javascript:spele=nodes.indexOf(document.getElementById('spele').value);refresh();"/>
+ </form></div>
  <div class="wrapper"><a class="center" style="width:700px;text-align:center;line-height:10pt;padding:0;" href="#" onclick="javascript:arrangeNodes();">Click Here to Trigger Nodes Arrangement via Dynamic Simulation.</a></div>
- <div class="wrapper"><a class="center" style="width:700px;text-align:center;line-height:10pt;padding:0;" href="C6Group.htm">C6 Group</a> <a class="center" style="width:700px;text-align:center;line-height:10pt;padding:0;" href="D3Group.htm">D3 Group</a></div>
 </body></html>

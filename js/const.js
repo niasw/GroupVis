@@ -5,7 +5,7 @@ var table;
 // constant declaration
 var wid=700; // width
 var hgh=700; // height
-var txtsize=16; // text size in pt
+var txtsize=15; // text size in pt
 var linsize=2; // line width in px
 var circler=20; // circle radius
 var linkwid=10; // link rect width in px
@@ -15,7 +15,10 @@ var baldist=330; // balance distance
 var central=0.1; // central attraction to avoid moving away
 // function declaration
 function drawinit() {
- d3.select('body').append('div').attr('class','wrapper')
+ d3.select('body').append('div').attr('class','wrapper').attr('id','canvas')
    .append('svg').attr('class','chart center')
    .attr('width',wid).attr('height',hgh);
+}
+function delgraph() {
+ d3.select('div#canvas').remove();
 }
