@@ -26,13 +26,13 @@
  </form></div>
  <div class="wrapper"><form class="center" name="formgraph" style="width:700px;text-align:center;line-height:10pt;padding:0;">
   <input type="radio" name="graph" onclick="javascript:drawgraph=drawtable;refresh();" checked="checked"/>All Multi. Table
-  <input type="radio" name="graph" onclick="javascript:drawgraph=drawtable1ele;spele=nodes.indexOf(document.getElementById('spele').value);refresh();"/>1 Ele. Filter
-  <input type="radio" name="graph" onclick="javascript:drawgraph=drawmultiL;spele=nodes.indexOf(document.getElementById('spele').value);refresh();"/>L-Multi. Graph
-  <input type="radio" name="graph" onclick="javascript:drawgraph=drawmultiR;spele=nodes.indexOf(document.getElementById('spele').value);refresh();"/>R-Multi. Graph
+  <input type="radio" name="graph" onclick="javascript:drawgraph=drawtable1ele;updateSPeleAndRefresh();"/>1 Ele. Filter
+  <input type="radio" name="graph" onclick="javascript:drawgraph=drawmultiL;updateSPeleAndRefresh();"/>L-Multi. Graph
+  <input type="radio" name="graph" onclick="javascript:drawgraph=drawmultiR;updateSPeleAndRefresh();"/>R-Multi. Graph
  </form></div>
  <div class="wrapper"><form class="center" name="formspele" style="width:700px;text-align:center;line-height:10pt;padding:0;">
   The Element = <input type="text" value="1" id="spele"/>
-  <input type="button" value="Refresh" onsubmit="javascript:spele=nodes.indexOf(document.getElementById('spele').value);console.log(spele);refresh();" onclick="javascript:spele=nodes.indexOf(document.getElementById('spele').value);refresh();"/>
+  <input type="button" value="Refresh" onclick="javascript:updateSPeleAndRefresh();"/>
  </form></div>
  <div class="wrapper"><a class="center" style="width:700px;text-align:center;line-height:10pt;padding:0;" href="#" onclick="javascript:arrangeNodes();">Click Here to Trigger Nodes Arrangement via Dynamic Simulation.</a></div>
 </body></html>

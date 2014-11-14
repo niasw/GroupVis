@@ -3,3 +3,8 @@
 var source="example/data/demo.json";
 var drawgraph=drawtable;
 var spele=0;
+function updateSPeleAndRefresh() {
+ spele=nodes.indexOf(document.getElementById('spele').value);
+ if (spele==-1) alert('404: Special Element not Found!');
+ refresh();
+}
