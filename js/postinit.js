@@ -2,6 +2,7 @@
 /** @author Sun Sibai & Liu Yu **/
 var source="example/data/demo.json";
 var drawgraph=drawtable;
+var animation=fullgraph;
 var spele=0;
 function updateSPeleAndRefresh() {
  spele=nodes.indexOf(document.getElementById('spele').value);

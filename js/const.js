@@ -9,10 +9,10 @@ var txtsize=15; // text size in pt
 var linsize=2; // line width in px
 var circler=20; // circle radius
 var linkwid=10; // link rect width in px
-var strngth=0.001; // dynamic simulation (force)
+var strngth=1; // dynamic simulation (force)
 var viscsty=1; // dynamic simulation (viscosity)
-var baldist=330; // balance distance
-var central=0.1; // central attraction to avoid moving away
+var noddist=500; // balance distance for a single link
+var central=0.1; // central attraction to prevent drifting away
 // function declaration
 function drawinit() {
  d3.select('body').append('div').attr('class','wrapper').attr('id','canvas')
@@ -21,4 +21,11 @@ function drawinit() {
 }
 function delgraph() {
  d3.select('div#canvas').remove();
+}
+function setdrawpara() {
+ noddist=1600/Math.sqrt(nodes.length+1);
+ if (nodes.length>50) {
+  circler=20/Math.sqrt(nodes.length-50);
+  txtsize=Math.round(circler*0.75);
+ }
 }

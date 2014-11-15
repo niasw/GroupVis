@@ -6,6 +6,8 @@ function refresh() {
   try { delgraph(); } catch (exc) {}
   nodes=data.nodes;
   table=data.table;
+  // setting graphics
+  setdrawpara();
   // draw graph
   drawinit();
   drawnodes(nodes);

@@ -11,27 +11,29 @@
  <div class="wrapper"><p class="center" style="width:700px;text-align:left;line-height:1pt;padding:0;"><b>GroupVis</b></p><p class="center" style="width:700px;text-align:right;line-height:1pt;padding:0 0 10px 0;">@author <i>Sun Sibai</i> &amp; <i>Liu Yu</i></p></div>
  <!--<script src="http://d3js.org/d3.v3.min.js"></script>-->
  <script src="lib/d3.min.js"></script>
- <script src="js/const.js"></script><!--declare constants, init svg-->
+ <script src="js/const.js"></script><!--constants, initialization-->
  <script src="js/drawnodes.js"></script><!--draw nodes-->
  <script src="js/drawgraph.js"></script><!--draw relations-->
  <script src="js/main.js"></script><!--json entrance-->
- <script src="js/arrange.js"></script><!--controls-->
- <script src="js/postinit.js"></script><!--json entrance-->
+ <script src="js/animation.js"></script><!--animation algorithm-->
+ <script src="js/postinit.js"></script><!--post initialization-->
+ <script src="js/arrange.js"></script><!--animation entrance-->
  <script>refresh();</script><!--run entrance-->
  <div class="wrapper"><form class="center" name="formgroup" style="width:700px;text-align:center;line-height:10pt;padding:0;">
   <input type="radio" name="group" onclick="javascript:source='example/data/demo.json';refresh();" checked="checked"/>Relation 1
   <input type="radio" name="group" onclick="javascript:source='example/data/demosame.json';refresh();"/>Relation 2
   <input type="radio" name="group" onclick="javascript:source='example/data/D3group.json';refresh();"/>D3 Group
   <input type="radio" name="group" onclick="javascript:source='example/data/C6group.json';refresh();"/>C6 Group
+  <input type="radio" name="group" onclick="javascript:source='example/data/Tgroup.json';refresh();"/>T Group
  </form></div>
  <div class="wrapper"><form class="center" name="formgraph" style="width:700px;text-align:center;line-height:10pt;padding:0;">
-  <input type="radio" name="graph" onclick="javascript:drawgraph=drawtable;refresh();" checked="checked"/>All Multi. Table
-  <input type="radio" name="graph" onclick="javascript:drawgraph=drawtable1ele;updateSPeleAndRefresh();"/>1 Ele. Filter
-  <input type="radio" name="graph" onclick="javascript:drawgraph=drawmultiL;updateSPeleAndRefresh();"/>L-Multi. Graph
-  <input type="radio" name="graph" onclick="javascript:drawgraph=drawmultiR;updateSPeleAndRefresh();"/>R-Multi. Graph
+  <input type="radio" name="graph" onclick="javascript:drawgraph=drawtable;animation=fullgraph;refresh();" checked="checked"/>All Multi. Table
+  <input type="radio" name="graph" onclick="javascript:drawgraph=drawtable1ele;animation=mononodes;updateSPeleAndRefresh();"/>1 Ele. Filter
+  <input type="radio" name="graph" onclick="javascript:drawgraph=drawmultiL;animation=animmultiL;updateSPeleAndRefresh();"/>L-Multi. Graph
+  <input type="radio" name="graph" onclick="javascript:drawgraph=drawmultiR;animation=animmultiR;updateSPeleAndRefresh();"/>R-Multi. Graph
  </form></div>
  <div class="wrapper"><form class="center" name="formspele" style="width:700px;text-align:center;line-height:10pt;padding:0;">
-  The Element = <input type="text" value="1" id="spele"/>
+  The Element = <input type="text" value="1" id="spele" onkeydown="javascript:if (event.keyCode==13) {this.select();updateSPeleAndRefresh();this.blur();}"/>
   <input type="button" value="Refresh" onclick="javascript:updateSPeleAndRefresh();"/>
  </form></div>
  <div class="wrapper"><a class="center" style="width:700px;text-align:center;line-height:10pt;padding:0;" href="#" onclick="javascript:arrangeNodes();">Click Here to Trigger Nodes Arrangement via Dynamic Simulation.</a></div>

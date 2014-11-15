@@ -46,4 +46,5 @@ def genjson(csvfile,jsonfile):
   cf=open(jsonfile,'w');
   cf.write(json.dumps(jsontxt));
 #genjson('D3group.csv','D3group.json');
-genjson('C6group.csv','C6group.json');
+#genjson('C6group.csv','C6group.json');
+genjson('Tgroup.csv','Tgroup.json');
